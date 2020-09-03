@@ -4,7 +4,7 @@ import ContactContext from '../../context/contact/ContactContext'
 const ContactForm = () => {
     const contactContext = useContext(ContactContext);
 
-    const { addContact, current } = contactContext;
+    const { addContact, current, clearCurrent } = contactContext;
 
     useEffect(() => {
         if(current !== null) {
@@ -41,9 +41,14 @@ const ContactForm = () => {
         });
     }
 
+    const clearAll = e => {
+        e.preventDefault();
+        clearCurrent();
+    }
+
     return (
         <form onSubmit={onSubmit}>
-            <h2 className="tect-primary">Add Contact</h2>
+            <h2 className="tect-primary">{current ? 'Update Contact' : 'Add Contact'}</h2>
             <input
                 type="text"
                 placeholder="name"
@@ -69,8 +74,13 @@ const ContactForm = () => {
             <input type='radio' name='type' value='personal' checked={type === 'personal'} onChange={onChange} /> Personal{' '}
             <input type='radio' name='type' value='professional' checked={type === 'professional'} onChange={onChange} /> Professional{' '}
             <div>
-                <input type='submit' value='Add Contact' className='btn btn-primary btn-block'></input>
+                <input type='submit' value={current ? 'Update Contact' : 'Add Contact'} className='btn btn-primary btn-block'></input>
             </div>
+            {current && <div>
+                <button className="btn btn-light btn-block" onClick={clearAll}>
+                    Clear
+                </button>
+            </div>}
         </form>
     );
 };
