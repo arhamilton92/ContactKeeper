@@ -45,7 +45,7 @@ const ContactState = props => {
 
     //Add Contact
     const addContact = contact => {
-        contact.id = uuid
+        contact.id = uuid;
         dispatch({ type: ADD_CONTACT, payload: contact });
     };
 
