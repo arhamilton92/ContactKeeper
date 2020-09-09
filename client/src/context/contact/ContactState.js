@@ -3,6 +3,8 @@ import axios from 'axios';
 import contactContext from './ContactContext';
 import contactReducer from './ContactReducer';
 import {
+    GET_CONTACTS,
+    CLEAR_CONTACTS,
     ADD_CONTACT,
     DELETE_CONTACT,
     SET_CURRENT,
@@ -15,8 +17,7 @@ import {
 
 const ContactState = props => {
     const initialState = {
-        contacts: [
-        ],
+        contacts: null,
         current: null,
         filtered: null,
         error: null
@@ -41,8 +42,24 @@ const ContactState = props => {
             dispatch({ 
                 type: CONTACT_ERROR,
                 payload: error.response.msg 
-        })
+            })
             
+        }
+    };
+
+    // Get Contacts
+    const getContacts = async contact => {
+        try {
+            const res = await axios.get('/api/contacts')
+            dispatch({ 
+                type: GET_CONTACTS, 
+                payload: res.data
+            });
+        } catch (error) {
+            dispatch({ 
+                type: CONTACT_ERROR,
+                payload: error.response.msg 
+            })
         }
     };
 
@@ -50,6 +67,8 @@ const ContactState = props => {
     const deleteContact = id => {
         dispatch({ type: DELETE_CONTACT, payload: id });
     };
+
+    // Clear Contacts
 
     //Set Current Contact
     const setCurrent = contact => {
@@ -89,7 +108,8 @@ const ContactState = props => {
             clearCurrent,
             updateContact,
             filterContacts,
-            clearFilter
+            clearFilter,
+            getContacts
         }}>
             { props.children }
         </contactContext.Provider>
