@@ -44,39 +44,23 @@ const ContactState = props => {
 
     //Add Contact
     const addContact = async contact => {
-        // const config = {
-        //     headers: {
-        //         'Content-Type': 'application/json'
-        //     }
-        // }
-        // try {
-        //     const res = await axios.post('/api/contacts', contact, config)
-        //     dispatch({ 
-        //         type: ADD_CONTACT, 
-        //         payload: res.data
-        //     });
-        // } catch (error) {
-        //     dispatch({ 
-        //         type: CONTACT_ERROR,
-        //         payload: error.response.msg 
-        //     })
-            
-        // }
-    };
-
-    // Get Contacts
-    const getContacts = async contact => {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
         try {
-            const res = await axios.get('/api/contacts')
+            const res = await axios.post('/api/contacts', contact, config)
             dispatch({ 
-                type: GET_CONTACTS, 
+                type: ADD_CONTACT, 
                 payload: res.data
             });
         } catch (error) {
             dispatch({ 
                 type: CONTACT_ERROR,
                 payload: error.response.msg 
-            })
+        })
+            
         }
     };
 
@@ -97,7 +81,7 @@ const ContactState = props => {
 
     //Clear Current Contact
     const clearCurrent = () => {
-        dispatch({ type: CLEAR_CURRENT });
+        dispatch({ type: CLEAR_CURRENT, });
     };
 
     //Update Contact
@@ -131,7 +115,6 @@ const ContactState = props => {
             filterContacts,
             clearFilter,
             clearContacts
-
         }}>
             { props.children }
         </contactContext.Provider>
