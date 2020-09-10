@@ -4,6 +4,7 @@ import ContactContext from '../../context/contact/ContactContext';
 import ContactItem from './ContactItem'
 import Spinner from '../layout/Spinner'
 
+
 function Contacts() {
     const contactContext = useContext(ContactContext);
 
@@ -13,7 +14,6 @@ function Contacts() {
         getContacts();
         // eslint-disable-next-line
     }, []);
-    
 
     if(contacts !== null && contacts.length === 0 && !loading) {
         return <h4>Please add a Contact.</h4>
