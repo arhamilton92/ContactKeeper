@@ -25,12 +25,6 @@ export default (state, action) => {
                 contacts: [action.payload, ...state.contacts],
                 loading: false
             };
-        case GET_CONTACTS:
-            return {
-                ...state,
-                contacts: action.payload,
-                loading: false
-            }
         case DELETE_CONTACT:
             return {
                 ...state,
