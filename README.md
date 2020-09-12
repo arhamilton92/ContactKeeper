@@ -3,13 +3,11 @@
 ## React Front to Back by Brad Traversy.
 This is NOT an original application.
 
-ContactKeeper is a full stack application, featuring:
--React/MERN & Context
--MongoDB Atlas
--User validation with bcrypt and JSON web token
--Heroku deployment
-
-project features full CRUD and a cloud server.
+# ContactKeeper is a full stack MERN application, featuring:
+*React using Context
+*MongoDB Atlas
+*User validation with bcrypt and JSON web token
+*Heroku deployment
 
 This project was created for React practice.
 
